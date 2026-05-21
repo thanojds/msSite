@@ -2,18 +2,14 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#02050B] border-t border-white/10 w-full">
 
-      {/* GLOW BACKGROUND */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-75 bg-cyan-500/10 blur-[140px] pointer-events-none" />
 
-      {/* GRID */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-size-[5rem_5rem]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-10">
 
-        {/* TOP SECTION */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 border-b border-white/10 pb-14">
 
-          {/* LEFT */}
           <div className="space-y-6">
 
             <div>
@@ -40,7 +36,6 @@ export default function Footer() {
             </button>
           </div>
 
-          {/* MIDDLE NAV */}
           <div className="lg:pl-16">
 
             <p className="text-white font-black uppercase tracking-[0.25em] text-sm mb-8">
@@ -61,7 +56,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* RIGHT CONTACT */}
           <div>
 
             <p className="text-white font-black uppercase tracking-[0.25em] text-sm mb-8">

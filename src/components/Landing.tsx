@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import WebPages from "./WebPages";
+import NewLand from "./NewLand";
 
 export default function Landing() {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 10000);
+        const timer = setTimeout(() => setLoading(false), 1000);
         return () => clearTimeout(timer);
     }, []);
 
     return (
         <>
-            {loading ? <Loading /> : <WebPages />}
+            {loading ? <Loading /> : <NewLand />}
         </>
     );
 }
