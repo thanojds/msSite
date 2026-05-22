@@ -71,7 +71,7 @@ export default function EventsNews() {
               transition={{ duration: 0.8 }}
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
 
             <div className="absolute bottom-6 left-6 text-white">
               <h3 className="text-2xl font-black">
