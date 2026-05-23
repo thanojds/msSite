@@ -1,5 +1,9 @@
 import Navigation from "../Navigation";
 import { motion } from "framer-motion";
+import software from "../../assets/images/software.jpg"
+import web from "../../assets/images/web.jpg"
+import mobile from "../../assets/images/mobile.jpg"
+import design from "../../assets/images/design.jpg"
 
 export default function Services() {
   const services = [
@@ -7,21 +11,25 @@ export default function Services() {
       title: "Custom Software",
       desc: "Scalable enterprise systems with modern architecture.",
       tag: "SOFTWARE",
+      img: software,
     },
     {
       title: "Web Development",
       desc: "High-performance responsive web applications.",
       tag: "WEB",
+      img: web,
     },
     {
       title: "Mobile Apps",
       desc: "Android & iOS apps with smooth UX experience.",
       tag: "MOBILE",
+      img: mobile,
     },
     {
       title: "UI / UX Design",
       desc: "Futuristic interfaces with clean user flow.",
       tag: "DESIGN",
+      img: design,
     },
   ];
 
@@ -76,27 +84,46 @@ export default function Services() {
                 bg-white/5 backdrop-blur-xl
                 shadow-[0_0_30px_rgba(6,182,212,0.10)]
                 transition-all duration-500
+                min-h-112.5
               "
             >
+
+              {/* IMAGE */}
+              <div className="relative h-64 overflow-hidden">
+
+                <img
+                  src={s.img}
+                  alt={s.title}
+                  className="
+                    w-full h-full object-cover
+                    transition-transform duration-700
+                    group-hover:scale-110
+                  "
+                />
+
+                {/* IMAGE OVERLAY */}
+                <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
+
+                {/* TAG */}
+                <div className="absolute top-5 left-5">
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-[10px] tracking-[0.3em] uppercase backdrop-blur-xl">
+                    {s.tag}
+                  </span>
+                </div>
+
+              </div>
 
               {/* glow hover layer */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-cyan-500/10 blur-xl" />
 
+              {/* CONTENT */}
               <div className="relative p-8">
-
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  className="text-cyan-300 text-xs tracking-[0.3em] uppercase"
-                >
-                  {s.tag}
-                </motion.span>
 
                 <motion.h3
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.1 }}
-                  className="text-2xl md:text-3xl font-black mt-3 group-hover:text-cyan-300 transition"
+                  className="text-2xl md:text-3xl font-black group-hover:text-cyan-300 transition"
                 >
                   {s.title}
                 </motion.h3>
@@ -105,7 +132,7 @@ export default function Services() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-slate-400 mt-3 text-sm leading-relaxed"
+                  className="text-slate-400 mt-4 text-sm leading-relaxed"
                 >
                   {s.desc}
                 </motion.p>

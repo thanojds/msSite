@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "../assets/images/Logo.png";
+import Logo from "../assets/images/CompanyLogo.png";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navigation() {
@@ -93,7 +93,7 @@ export default function Navigation() {
         </div>
       </motion.nav>
 
-      {/* MOBILE MENU */}
+      
       <AnimatePresence>
         {open && (
           <>

@@ -2,6 +2,10 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
+import software from "../assets/images/software.jpg"
+import web from "../assets/images/web.jpg"
+import mobile from "../assets/images/mobile.jpg"
+import design from "../assets/images/design.jpg"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,10 +14,10 @@ export default function Services() {
   const trackRef = useRef(null);
 
   const services = [
-    { title: "Custom Software", category: "SOFTWARE", img: "1.jpg", desc: "ERP & scalable systems." },
-    { title: "Web Development", category: "WEB", img: "2.jpg", desc: "Modern web apps." },
-    { title: "Mobile Apps", category: "MOBILE", img: "3.png", desc: "Android & iOS apps." },
-    { title: "UI / UX Design", category: "DESIGN", img: "4.jpg", desc: "Clean interfaces." }
+    { title: "Custom Software", category: "SOFTWARE", img: software, desc: "ERP & scalable systems." },
+    { title: "Web Development", category: "WEB", img: web, desc: "Modern web apps." },
+    { title: "Mobile Apps", category: "MOBILE", img: mobile, desc: "Android & iOS apps." },
+    { title: "UI / UX Design", category: "DESIGN", img: design, desc: "Clean interfaces." }
   ];
 
   useLayoutEffect(() => {
