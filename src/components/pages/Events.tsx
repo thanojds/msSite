@@ -2,41 +2,59 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "../Navigation";
 
+type CloudinaryImage = {
+  public_id: string;
+};
+
 export default function EventsNews() {
+  const cloudName = "dvnoyis73";
+
   const events = [
     {
-      title: "AI Workshop",
-      desc: "Advanced AI training session",
-      media: ["e1.jpg", "e2.jpg", "e3.jpg", "e4.jpg", "e5.jpg"],
-      videos: ["v1.mp4"],
-    },
-    {
-      title: "Tech Conference",
-      desc: "Future tech showcase",
-      media: ["t1.jpg", "t2.jpg", "t3.jpg", "t4.jpg", "t5.jpg"],
-      videos: [],
-    },
-    {
-      title: "App Launch",
-      desc: "Enterprise mobile launch",
-      media: ["m1.jpg", "m2.jpg", "m3.jpg", "m4.jpg", "m5.jpg"],
-      videos: [],
+      title: "noHazz | The Official Digital Grand Launch",
+      desc: "The official launch of noHazz marks a refined step into a new era of digital excellence. Crafted with precision and vision, the platform delivers a seamless blend of modern innovation, elegant design, and powerful performance.",
+      tag: "noHazz Website Launch",
     },
   ];
 
+  const [images, setImages] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [openEvent, setOpenEvent] = useState<number | null>(null);
+  const sliderIndexes = [4, 5, 11, 15, 16, 17, 18, 1];
 
-  // AUTO SLIDER (top main only)
+  const sliderImages = sliderIndexes.map((i) => images[i]).filter(Boolean);
+
+  useEffect(() => {
+    fetch(
+      `https://res.cloudinary.com/${cloudName}/image/list/noHazz.json`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const imgs =
+          data?.resources?.map(
+            (img: CloudinaryImage) =>
+              `https://res.cloudinary.com/${cloudName}/image/upload/${img.public_id}`
+          ) || [];
+
+        setImages(imgs);
+      })
+      .catch((err) => {
+        console.log("Cloudinary error:", err);
+        setImages([]);
+      });
+  }, []);
+
   useEffect(() => {
     if (openEvent !== null) return;
 
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % events.length);
+      setActiveIndex((prev) =>
+        sliderImages.length > 0 ? (prev + 1) % sliderImages.length : 0
+      );
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [openEvent]);
+  }, [openEvent, images]);
 
   return (
     <>
@@ -57,15 +75,18 @@ export default function EventsNews() {
           <h2 className="text-4xl md:text-6xl font-black text-white">
             Events & <span className="text-cyan-400">News</span>
           </h2>
+          <p className="text-slate-400 mt-3 max-w-2xl mx-auto">
+            Discover milestones, innovations, and moments that define our digital journey
+          </p>
         </div>
 
-        {/* 🔥 TOP MAIN SLIDER */}
-        {openEvent === null && (
+         {openEvent === null && sliderImages.length > 0 && (
           <motion.div className="relative z-10 max-w-5xl mx-auto h-[60vh] rounded-3xl overflow-hidden border border-cyan-500/20">
+
             <motion.img
               key={activeIndex}
-              src={events[activeIndex].media[0]}
-              className="absolute w-full h-full object-cover"
+              src={sliderImages[activeIndex]}
+              className="absolute inset-0 w-full h-full object-cover object-center scale-105"
               initial={{ opacity: 0, scale: 1.1 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
@@ -75,42 +96,51 @@ export default function EventsNews() {
 
             <div className="absolute bottom-6 left-6 text-white">
               <h3 className="text-2xl font-black">
-                {events[activeIndex].title}
+                {events[0].title}
               </h3>
-              <p className="text-slate-300 text-sm">
-                {events[activeIndex].desc}
+              <p className="text-slate-300 text-sm max-w-md">
+                {events[0].desc}
               </p>
             </div>
           </motion.div>
         )}
 
-        {/* 🔥 EVENT LIST (BELOW) */}
-        <div className="relative z-10 mt-16 space-y-10 max-w-5xl mx-auto">
+         <div className="relative z-10 mt-16 space-y-10 max-w-5xl mx-auto">
 
           {events.map((event, i) => (
             <div
               key={i}
-              className="border border-cyan-500/20 rounded-2xl overflow-hidden bg-white/5 backdrop-blur-xl"
+              className="border border-cyan-500/20 rounded-2xl overflow-hidden bg-white/5 backdrop-blur-xl hover:border-cyan-400/40 transition"
             >
 
-              {/* SMALL IMAGE SLIDER */}
-              <div className="relative h-56 overflow-hidden">
-                <motion.img
-                  key={i + activeIndex}
-                  src={event.media[0]}
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.05 }}
-                />
+              {/* COLLAGE */}
+              <div className="relative h-64 w-full overflow-hidden">
 
-                <div className="absolute inset-0 bg-black/40" />
+                <div className="grid grid-cols-3 grid-rows-2 gap-1 w-full h-full">
 
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-xl font-black">{event.title}</h3>
-                  <p className="text-sm text-slate-300">{event.desc}</p>
+                  <img
+                    src={images[18]}
+                    className="col-span-2 row-span-2 w-full h-full object-cover"
+                  />
+
+                  <img
+                    src={images[16]}
+                    className="w-full h-full object-cover"
+                  />
+
+                  <img
+                    src={images[17]}
+                    className="w-full h-full object-cover"
+                  />
+
                 </div>
               </div>
-
-              {/* BUTTON */}
+              <div className="relative top-4 left-4 text-white">
+                  <h3 className="text-xl font-black">{event.title}</h3>
+                  <p className="text-sm text-slate-300 line-clamp-2">
+                    {event.desc}
+                  </p>
+              </div>
               <div className="p-5 flex justify-between items-center">
                 <span className="text-cyan-300 text-xs tracking-[0.3em] uppercase">
                   Event
@@ -118,17 +148,16 @@ export default function EventsNews() {
 
                 <button
                   onClick={() => setOpenEvent(i)}
-                  className="px-5 py-2 bg-cyan-500 text-black font-bold rounded-xl"
+                  className="px-5 py-2 bg-cyan-500 text-black font-bold rounded-xl hover:bg-cyan-400 transition"
                 >
                   See More
                 </button>
               </div>
             </div>
           ))}
-
         </div>
 
-        {/* 🔥 FULL EVENT MODAL */}
+        {/* 🔥 MODAL */}
         <AnimatePresence>
           {openEvent !== null && (
             <motion.div
@@ -138,10 +167,9 @@ export default function EventsNews() {
               exit={{ opacity: 0 }}
             >
 
-              {/* CLOSE */}
               <button
                 onClick={() => setOpenEvent(null)}
-                className="fixed top-5 right-5 text-white text-2xl"
+                className="fixed top-5 right-10 text-white text-2xl cursor-pointer"
               >
                 ✕
               </button>
@@ -158,28 +186,15 @@ export default function EventsNews() {
 
                 {/* IMAGES */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {events[openEvent].media.map((img, idx) => (
+                  {images.map((img, idx) => (
                     <img
                       key={idx}
                       src={img}
                       className="rounded-xl border border-cyan-500/20 hover:scale-105 transition"
+                      alt=""
                     />
                   ))}
                 </div>
-
-                {/* VIDEOS */}
-                {events[openEvent].videos.length > 0 && (
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {events[openEvent].videos.map((v, idx) => (
-                      <video
-                        key={idx}
-                        src={v}
-                        controls
-                        className="rounded-xl border border-cyan-500/20"
-                      />
-                    ))}
-                  </div>
-                )}
 
               </div>
             </motion.div>
