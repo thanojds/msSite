@@ -1,9 +1,20 @@
 import { motion } from "framer-motion";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useRef, useState } from "react";
 
 
 const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
-  const nameInputRef = useRef<HTMLInputElement>(null);
+const nameInputRef = useRef<HTMLInputElement | null>(null);
+const emailRef = useRef<HTMLInputElement | null>(null);
+const messageRef = useRef<HTMLTextAreaElement | null>(null);
+const [alertMsg, setAlertMsg] = useState<string | null>(null);
+
+const showAlert = (msg: string) => {
+  setAlertMsg(msg);
+
+  setTimeout(() => {
+    setAlertMsg(null);
+  }, 3000);
+};
 
   const focusForm = () => {
     nameInputRef.current?.focus();
@@ -11,6 +22,28 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
       behavior: "smooth",
       block: "center",
     });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+      const name = nameInputRef.current?.value.trim();
+      const email = emailRef.current?.value.trim();
+      const message = messageRef.current?.value.trim();
+
+
+        if (!name || !email || !message) {
+          showAlert("⚠️ Please fill all fields!");
+          return;
+        }
+
+        const mailtoLink = `mailto:micronsoftsolutions@gmail.com?subject=Contact Form&body=
+          Name: ${name}%0A
+          Email: ${email}%0A
+          Message: ${message}
+      `;
+
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -68,16 +101,21 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
             />
 
             <input
+              ref={emailRef}
               type="email"
               placeholder="Email"
               className="w-full p-3 mb-4 rounded-xl bg-black/40 border border-white/10 text-white focus:border-cyan-400 outline-none"
             />
 
             <textarea
+              ref={messageRef}
               rows={5}
               placeholder="Message"
               className="w-full p-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-cyan-400 outline-none"
             />
+            <button onClick={handleSubmit} className="w-full py-3 bg-cyan-500 text-black font-black rounded-xl hover:scale-105 transition shadow-[0_0_30px_#06B6D4] mt-2 cursor-pointer">
+              Send Message
+            </button>
           </div>
 
           {/* INFO + SOCIAL */}
@@ -88,9 +126,23 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
                 Contact Info
               </h3>
 
-              <p className="mb-2">📍 Sri Lanka</p>
-              <p className="mb-2">✉ micronsoftsolutions@gmail.com</p>
-              <p>📞 +94 70 416 0160</p>
+               <div className="space-y-6 text-slate-300">
+
+                <div>
+                  <p className="text-white font-semibold">📍 Location</p>
+                  <p>Sri Lanka — Matara</p>
+                </div>
+
+                <div>
+                  <p className="text-white font-semibold">✉ Email</p>
+                  <p>micronsoftsolutions@gmail.com</p>
+                </div>
+
+                <div>
+                  <p className="text-white font-semibold">📞 Phone</p>
+                  <p>+94 70 416 0160</p>
+                </div>
+              </div>
             </div>
 
             {/* SOCIAL ICONS */}
@@ -151,6 +203,11 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
 
           </div>
         </div>
+        {alertMsg && (
+          <div className="fixed top-6 right-6 bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg z-999 animate-pulse">
+            {alertMsg}
+          </div>
+        )}
     </section>
   );
 });

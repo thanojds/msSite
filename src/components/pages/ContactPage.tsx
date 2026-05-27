@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Navigation from "../Navigation";
 import PageFooter from "./PageFooter";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Contact() {
   const nameInputRef = useRef<HTMLInputElement>(null);
@@ -12,6 +12,42 @@ export default function Contact() {
       block: "center",
     });
   };
+
+
+const emailRef = useRef<HTMLInputElement | null>(null);
+const messageRef = useRef<HTMLTextAreaElement | null>(null);
+const [alertMsg, setAlertMsg] = useState<string | null>(null);
+
+const showAlert = (msg: string) => {
+  setAlertMsg(msg);
+
+  setTimeout(() => {
+    setAlertMsg(null);
+  }, 3000);
+};
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+      const name = nameInputRef.current?.value.trim();
+      const email = emailRef.current?.value.trim();
+      const message = messageRef.current?.value.trim();
+
+
+        if (!name || !email || !message) {
+          showAlert("⚠️ Please fill all fields!");
+          return;
+        }
+
+        const mailtoLink = `mailto:micronsoftsolutions@gmail.com?subject=Contact Form&body=
+          Name: ${name}%0A
+          Email: ${email}%0A
+          Message: ${message}
+      `;
+
+    window.location.href = mailtoLink;
+  };
+
 
   return (
     <>
@@ -90,7 +126,7 @@ export default function Contact() {
               className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyan-400 outline-none"
             />
 
-            <button className="w-full py-3 bg-cyan-500 text-black font-black rounded-xl hover:scale-105 transition shadow-[0_0_30px_#06B6D4]">
+            <button onClick={handleSubmit} className="w-full py-3 bg-cyan-500 text-black font-black rounded-xl hover:scale-105 transition shadow-[0_0_30px_#06B6D4]">
               Send Message
             </button>
           </div>
@@ -194,6 +230,11 @@ export default function Contact() {
 
     </section>
     <PageFooter />
+    {alertMsg && (
+      <div className="fixed top-6 right-6 bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg z-999 animate-pulse">
+        {alertMsg}
+      </div>
+    )}
     </>
   );
 }
