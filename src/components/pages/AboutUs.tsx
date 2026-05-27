@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Target, Eye } from "lucide-react";
 import Navigation from "../Navigation";
 import Logo from "../../assets/images/CompanyLogo.png";
+import PageFooter from "./PageFooter";
 
 export default function AboutUs() {
   const features = [
@@ -259,6 +260,7 @@ export default function AboutUs() {
 
         </div>
       </section>
+      <PageFooter />
     </>
   );
 }

@@ -4,6 +4,8 @@ import software from "../../assets/images/software.jpg"
 import web from "../../assets/images/web.jpg"
 import mobile from "../../assets/images/mobile.jpg"
 import design from "../../assets/images/design.jpg"
+import PageFooter from "./PageFooter"
+import { useNavigate } from "react-router-dom"
 
 export default function Services() {
   const services = [
@@ -32,6 +34,8 @@ export default function Services() {
       img: design,
     },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -182,12 +186,14 @@ export default function Services() {
               shadow-[0_0_30px_#06B6D4]
               transition
             "
+             onClick={() => navigate("/contact")}
           >
             Get Started
           </motion.button>
         </motion.div>
 
       </section>
+      <PageFooter />
     </>
   );
 }

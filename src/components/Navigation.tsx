@@ -26,7 +26,7 @@ export default function Navigation() {
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 w-full z-50 flex justify-center"
+        className="fixed top-0 left-0 w-full z-999 flex justify-center"
       >
         <div className="
           w-full lg:w-[90%] mx-auto
@@ -117,7 +117,7 @@ export default function Navigation() {
                 w-[85%] sm:w-[60%]
                 h-[50%]
                 bg-[#060913]
-                z-50
+                z-999
                 border-l border-cyan-500/20
                 p-8
                 flex flex-col gap-8

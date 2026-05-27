@@ -32,6 +32,13 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, [startCounting]);
 
+const scrollDown = () => {
+  window.scrollBy({
+    top: window.innerHeight, 
+    behavior: "smooth",
+  });
+};
+
   return (
     <>
       <section className="w-screen sm:min-h-screen md:h-screen lg:h-screen bg-black relative overflow-hidden flex flex-col items-center justify-center">
@@ -62,13 +69,17 @@ useEffect(() => {
               <p className="sm:text-[2px] md:text-2xl lg:text-xl text-white relative">
                 High-end digital solutions crafted for performance, scale, and perfection.
               </p>
-              <motion.button
+              <motion.button onClick={scrollDown}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 4, duration: 0.5 }}
                 className="text-white bg-linear-to-r from-blue-500 to-cyan-400 rounded-4xl z-30 px-6 py-3 w-[50%] relative cursor-pointer"
               >
-                Get Started
+               Explore More
+
+                <span className="opacity-70 group-hover:opacity-100 transition">
+                  ›››
+                </span>
               </motion.button>
         </motion.div>
 

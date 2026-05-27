@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "../Navigation";
+import PageFooter from "./PageFooter";
 
 type CloudinaryImage = {
   public_id: string;
@@ -161,7 +162,7 @@ export default function EventsNews() {
         <AnimatePresence>
           {openEvent !== null && (
             <motion.div
-              className="fixed inset-0 z-50 bg-black overflow-y-auto p-6"
+              className="fixed inset-0 z-999 bg-black overflow-y-auto p-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -202,6 +203,7 @@ export default function EventsNews() {
         </AnimatePresence>
 
       </section>
+      <PageFooter />
     </>
   );
 }
