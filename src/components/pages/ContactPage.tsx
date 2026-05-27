@@ -126,7 +126,7 @@ const showAlert = (msg: string) => {
               className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyan-400 outline-none"
             />
 
-            <button onClick={handleSubmit} className="w-full py-3 bg-cyan-500 text-black font-black rounded-xl hover:scale-105 transition shadow-[0_0_30px_#06B6D4]">
+            <button onClick={handleSubmit} className="w-full py-3 bg-cyan-500 text-black font-black rounded-xl hover:scale-105 transition shadow-[0_0_30px_#06B6D4] cursor-pointer">
               Send Message
             </button>
           </div>
