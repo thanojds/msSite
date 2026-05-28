@@ -1,9 +1,19 @@
 import { motion } from "framer-motion";
-import { forwardRef, useRef, useState } from "react";
+import Navigation from "../Navigation";
+import PageFooter from "./PageFooter";
+import { useRef, useState } from "react";
+
+export default function Contact() {
+  const nameInputRef = useRef<HTMLInputElement>(null);
+   const focusForm = () => {
+    nameInputRef.current?.focus();
+    nameInputRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
 
 
-const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
-const nameInputRef = useRef<HTMLInputElement | null>(null);
 const emailRef = useRef<HTMLInputElement | null>(null);
 const messageRef = useRef<HTMLTextAreaElement | null>(null);
 const [alertMsg, setAlertMsg] = useState<string | null>(null);
@@ -15,14 +25,6 @@ const showAlert = (msg: string) => {
     setAlertMsg(null);
   }, 3000);
 };
-
-  const focusForm = () => {
-    nameInputRef.current?.focus();
-    nameInputRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,106 +48,117 @@ const showAlert = (msg: string) => {
     window.location.href = mailtoLink;
   };
 
+
   return (
-    <section
-      ref={ref}
-      className="relative w-full overflow-hidden bg-black px-6 py-28"
-    >
+    <>
+      <Navigation />
+      <section className="relative w-full min-h-screen py-32 px-6 bg-black text-white overflow-hidden">
+
       {/* BACKGROUND GLOW */}
       <div className="absolute inset-0 flex justify-center items-center">
-        <div className="w-125 h-75 bg-cyan-500 blur-3xl opacity-20 rounded-full animate-pulse" />
+        <div className="w-125 h-50 bg-cyan-500 blur-[160px] opacity-20 rounded-full animate-pulse" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      {/* GRID */}
+      <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#06B6D420_1px,transparent_1px),linear-gradient(to_bottom,#06B6D420_1px,transparent_1px)] bg-size-[4rem_4rem]" />
 
-        {/* HEADER */}
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+      {/* SIDE GLOWS */}
+      <div className="absolute top-10 left-10 w-72 h-72 bg-cyan-500 blur-[140px] opacity-20 rounded-full" />
+      <div className="absolute bottom-10 right-10 w-72 h-72 bg-fuchsia-500 blur-[160px] opacity-20 rounded-full" />
 
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-cyan-400 text-xs font-black tracking-[0.4em]"
-          >
-            INITIATE ENGAGEMENT
-          </motion.span>
+      {/* HEADER */}
+      <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
 
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-black text-white"
-          >
-            Ready To Elevate Your Business?
-          </motion.h2>
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-cyan-400 text-xs tracking-[0.4em] uppercase font-black"
+        >
+          INITIATE CONTACT PROTOCOL
+        </motion.span>
 
-          <motion.button
-            onClick={focusForm}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-cyan-500/20 border border-cyan-400 text-cyan-300 rounded-xl font-bold transition-all duration-300"
-          >
-            Get Started
-          </motion.button>
-        </div>
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-4xl md:text-6xl font-black leading-tight"
+        >
+          Let’s Build Something <span className="text-cyan-400">Futuristic</span>
+        </motion.h2>
 
-        {/* CONTENT */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-slate-400 text-sm md:text-base"
+        >
+          Connect with our team and turn your idea into a high-performance digital system.
+        </motion.p>
+      </div>
 
-          {/* FORM */}
-          <div className="p-6 rounded-2xl bg-white/5 border border-cyan-400/20 backdrop-blur-xl">
+      {/* MAIN GRID */}
+      <div className="relative z-10 mt-20 max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
 
-            <input
-              ref={nameInputRef}
+        {/* CONTACT FORM */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          className="p-8 rounded-3xl border border-cyan-400/20 bg-white/5 backdrop-blur-xl shadow-[0_0_40px_rgba(6,182,212,0.1)]"
+        >
+          <h3 className="text-xl font-bold text-cyan-300 mb-6">
+            Send Message
+          </h3>
+
+          <div className="space-y-4">
+            <input  ref={nameInputRef}
               type="text"
               placeholder="Your Name"
-              className="w-full p-3 mb-4 rounded-xl bg-black/40 border border-white/10 text-white focus:border-cyan-400 outline-none"
+              className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyan-400 outline-none"
             />
 
             <input
-              ref={emailRef}
               type="email"
-              placeholder="Email"
-              className="w-full p-3 mb-4 rounded-xl bg-black/40 border border-white/10 text-white focus:border-cyan-400 outline-none"
+              placeholder="Email Address"
+              className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyan-400 outline-none"
             />
 
             <textarea
-              ref={messageRef}
               rows={5}
-              placeholder="Message"
-              className="w-full p-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-cyan-400 outline-none"
+              placeholder="Your Message"
+              className="w-full p-3 rounded-xl bg-black/40 border border-white/10 focus:border-cyan-400 outline-none"
             />
-            <button onClick={handleSubmit} className="w-full py-3 bg-cyan-500 text-black font-black rounded-xl hover:scale-105 transition shadow-[0_0_30px_#06B6D4] mt-2 cursor-pointer">
+
+            <button onClick={handleSubmit} className="w-full py-3 bg-cyan-500 text-black font-black rounded-xl hover:scale-105 transition shadow-[0_0_30px_#06B6D4] cursor-pointer">
               Send Message
             </button>
           </div>
+        </motion.div>
 
-          {/* INFO + SOCIAL */}
-          <div className="p-6 rounded-2xl bg-white/5 border border-cyan-400/20 text-slate-300 flex flex-col justify-between">
+        {/* INFO PANEL */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          className="p-8 rounded-3xl border border-cyan-400/20 bg-white/5 backdrop-blur-xl"
+        >
+          <h3 className="text-xl font-bold text-cyan-300 mb-6">
+            Contact Info
+          </h3>
+
+          <div className="space-y-6 text-slate-300">
 
             <div>
-              <h3 className="text-cyan-300 font-bold mb-4 text-lg">
-                Contact Info
-              </h3>
-
-               <div className="space-y-6 text-slate-300">
-
-                <div>
-                  <p className="text-white font-semibold">📍 Location</p>
-                  <p>Sri Lanka — Matara</p>
-                </div>
-
-                <div>
-                  <p className="text-white font-semibold">✉ Email</p>
-                  <p>micronsoftsolutions@gmail.com</p>
-                </div>
-
-                <div>
-                  <p className="text-white font-semibold">📞 Phone</p>
-                  <p>+94 70 416 0160</p>
-                </div>
-              </div>
+              <p className="text-white font-semibold">📍 Location</p>
+              <p>Sri Lanka — Matara</p>
             </div>
 
-            {/* SOCIAL ICONS */}
+            <div>
+              <p className="text-white font-semibold">✉ Email</p>
+              <p>micronsoftsolutions@gmail.com</p>
+            </div>
+
+            <div>
+              <p className="text-white font-semibold">📞 Phone</p>
+              <p>+94 70 416 0160</p>
+            </div>
+
                 <div className="flex gap-4 mt-8 flex-wrap">
                    {/* WhatsApp */}
                   <a
@@ -199,18 +212,29 @@ const showAlert = (msg: string) => {
 
               </div>
 
-            </div>
+          </div>
+        </motion.div>
 
-          </div>
-        </div>
-        {alertMsg && (
-          <div className="fixed top-6 right-6 bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg z-999 animate-pulse">
-            {alertMsg}
-          </div>
-        )}
+      </div>
+
+      {/* BOTTOM CTA */}
+      <div className="relative z-10 text-center mt-24">
+        <h3 className="text-2xl md:text-4xl font-black">
+          Ready to start your <span className="text-cyan-400">digital journey?</span>
+        </h3>
+
+        <button onClick={focusForm} className="mt-6 px-8 py-3 bg-cyan-500 text-black font-bold rounded-xl hover:scale-105 transition shadow-[0_0_30px_#06B6D4] cursor-pointer">
+          Get Started
+        </button>
+      </div>
+
     </section>
+    <PageFooter />
+    {alertMsg && (
+      <div className="fixed top-6 right-6 bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg z-999 animate-pulse">
+        {alertMsg}
+      </div>
+    )}
+    </>
   );
-});
-
-export default Contact;
-
+}

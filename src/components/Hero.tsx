@@ -5,28 +5,43 @@ import { useEffect, useState } from "react";
 
 export default function Hero() {
   const [showStats, setShowStats] = useState(false);
-
+  const [startCounting, setStartCounting] = useState(false)
   const [years, setYears] = useState(0);
   const [teamMembers, setTeamMembers] = useState(0);
   const [satisfiedClients, setSatisfiedClients] = useState(0);
   const [completedProjects, setCompletedProjects] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setYears((v) => (v < 11 ? v + 1 : v));
-      setTeamMembers((v) => (v < 10 ? v + 1 : v));
-      setSatisfiedClients((v) => (v < 10 ? v + 1 : v));
-      setCompletedProjects((v) => (v < 10 ? v + 1 : v));
-    }, 120);
+  const timeout = setTimeout(() => {
+    setShowStats(true);
+  }, 5000);
 
-    setTimeout(() => setShowStats(true), 5000);
+  return () => clearTimeout(timeout);
+}, []);
 
-    return () => clearInterval(interval);
-  }, []);
+useEffect(() => {
+  if (!startCounting) return;
+
+  const interval = setInterval(() => {
+    setYears((v) => (v < 11 ? v + 1 : v));
+    setTeamMembers((v) => (v < 10 ? v + 1 : v));
+    setSatisfiedClients((v) => (v < 10 ? v + 1 : v));
+    setCompletedProjects((v) => (v < 10 ? v + 1 : v));
+  }, 120);
+
+  return () => clearInterval(interval);
+}, [startCounting]);
+
+const scrollDown = () => {
+  window.scrollBy({
+    top: window.innerHeight, 
+    behavior: "smooth",
+  });
+};
 
   return (
     <>
-      <section className="w-screen h-screen bg-black relative overflow-hidden flex flex-col items-center justify-center">
+      <section className="w-screen sm:min-h-screen md:h-screen lg:h-screen bg-black relative overflow-hidden flex flex-col items-center justify-center">
 
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -50,17 +65,21 @@ export default function Hero() {
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 3.5, duration: 0.8 }}
-          className="relative lg:absolute flex flex-col justify-center items-center text-center lg:items-start lg:text-left w-full lg:w-100 -bottom-23 md:-bottom-28 lg:bottom-20 left-0 lg:left-30 z-30 gap-3 mb-4">
-              <p className="text-lg sm:text-lg md:text-2xl lg:text-xl text-white relative">
+          className="relative lg:absolute flex flex-col justify-center items-center text-center lg:items-start lg:text-left w-full lg:w-100 -bottom-33 md:-bottom-28 lg:bottom-20 left-0 lg:left-30 z-30 gap-3 mb-4">
+              <p className="sm:text-[2px] md:text-2xl lg:text-xl text-white relative">
                 High-end digital solutions crafted for performance, scale, and perfection.
               </p>
-              <motion.button
+              <motion.button onClick={scrollDown}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 4, duration: 0.5 }}
                 className="text-white bg-linear-to-r from-blue-500 to-cyan-400 rounded-4xl z-30 px-6 py-3 w-[50%] relative cursor-pointer"
               >
-                Get Started
+               Explore More
+
+                <span className="opacity-70 group-hover:opacity-100 transition">
+                  ›››
+                </span>
               </motion.button>
         </motion.div>
 
@@ -68,7 +87,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: -200, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.6, duration: 1 }}
-          className="w-[240%] md:w-[160%] lg:w-full robot z-70 lg:z-20">
+          className="w-[280%] md:w-[160%] lg:w-full robot z-70 lg:z-20">
           <Spline scene="https://prod.spline.design/fLt-Jsw0wVoLCQzJ/scene.splinecode" />
         </motion.div>
 
@@ -77,6 +96,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            onAnimationComplete={() => setStartCounting(true)}
             className="relative lg:absolute grid grid-cols-2 w-[90%] h-auto lg:w-100 bottom-0  lg:h-70 lg:right-20 lg:bottom-20 z-40 bg-white/10 backdrop-blur-lg rounded-3xl"
           >
             <Stat label="Years of Experience" value={years} />

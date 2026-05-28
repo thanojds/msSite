@@ -1,112 +1,12 @@
-type FooterProps = {
-  scrollToContact: () => void
-}
-
-export default function Footer({ scrollToContact }: FooterProps) {
-  
-  return (
-    <footer className="relative overflow-hidden bg-[#02050B] border-t border-white/10 w-full">
+export default function PageFooter() {
+    return(
+        <footer className="relative overflow-hidden bg-[#02050B] border-t border-white/10 w-full">
 
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-75 bg-cyan-500/10 blur-[140px] pointer-events-none" />
 
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-size-[5rem_5rem]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-10">
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 border-b border-white/10 pb-14">
-
-          <div className="space-y-6">
-
-            <div>
-              <p className="text-cyan-400 text-xs font-black uppercase tracking-[0.3em] mb-3">
-                Micronsoft Solutions
-              </p>
-
-              <h2 className="text-3xl md:text-5xl font-black uppercase text-white leading-none">
-                Building The Future Of Digital Experiences
-              </h2>
-            </div>
-
-            <p className="text-slate-400 leading-relaxed max-w-md">
-              We craft modern software, web platforms, and digital experiences
-              with premium design and performance.
-            </p>
-
-            <button onClick={scrollToContact} className="group flex items-center gap-3 px-6 py-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-500 cursor-pointer">
-              Start A Project
-
-              <div className="w-9 h-9 rounded-xl bg-cyan-500 flex items-center justify-center group-hover:rotate-45 transition-transform duration-500">
-                ↗
-              </div>
-            </button>
-          </div>
-
-          <div className="lg:pl-16">
-
-            <p className="text-white font-black uppercase tracking-[0.25em] text-sm mb-8">
-              Navigation
-            </p>
-
-            <div className="flex flex-col gap-5">
-              {[
-                { name: "Home", path: "/" },
-                { name: "About", path: "/about" },
-                { name: "Services", path: "/services" },
-                { name: "Event & News", path: "/events" },
-                { name: "Contact", path: "/contact" },
-              ].map((item, i) => (
-                <button
-                  key={i}
-                  onClick={() => window.location.href = item.path}
-                  className="text-left text-slate-400 hover:text-cyan-300 transition-all duration-300 uppercase tracking-wider text-sm font-semibold hover:translate-x-2 cursor-pointer"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div>
-
-            <p className="text-white font-black uppercase tracking-[0.25em] text-sm mb-8">
-              Contact
-            </p>
-
-            <div className="space-y-5">
-
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">
-                  📍
-                </div>
-                <div>
-                  <p className="text-white font-semibold">Sri Lanka</p>
-                  <p className="text-slate-500 text-sm">Matara</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">
-                  ✉️
-                </div>
-                <div>
-                  <p className="text-white font-semibold">micronsoftsolutions@gmail.com</p>
-                  <p className="text-slate-500 text-sm">Send us an email</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">
-                  📞
-                </div>
-                <div>
-                  <p className="text-white font-semibold">+94 70 416 0160</p>
-                  <p className="text-slate-500 text-sm">Mon - Fri / 9AM - 6PM</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
         {/* BOTTOM */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
 
@@ -114,10 +14,10 @@ export default function Footer({ scrollToContact }: FooterProps) {
             © 2026 Micronsoft Solutions (Pvt) Ltd. All Rights Reserved.
           </p>
 
-
           <div className="flex items-center gap-4">
 
-            {/* WhatsApp */}
+
+                 {/* WhatsApp */}
             <a
               href="https://wa.me/94704160160" target="_blank" rel="noopener noreferrer"
               className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-green-500 hover:-translate-y-1 transition-all duration-500 cursor-pointer"
@@ -171,5 +71,5 @@ export default function Footer({ scrollToContact }: FooterProps) {
         </div>
       </div>
     </footer>
-  );
+    )
 }

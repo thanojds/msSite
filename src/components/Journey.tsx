@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Journey() {
-  const images = ["j.jpeg", "j2.jpeg", "j3.jpeg"];
+  const images = [
+    "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689125/Edited_13_dldjjk.jpg", 
+    "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689030/Edited_23_yrhfe3.jpg", 
+    "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689621/Edited_57_prdxs7.jpg"
+  ];
 
   const [index, setIndex] = useState(0);
 

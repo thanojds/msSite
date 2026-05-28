@@ -3,24 +3,14 @@ import { motion } from "framer-motion";
 export default function Members() {
   const teamMembers = [
     {
-      name: "Sithara Samarakoon",
-      role: "Co-Founder",
-      img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400"
-    },
-    {
       name: "Thanoj Pathmakulasooriya",
       role: "Co-Founder",
-      img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400"
+      img: "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779690271/Edited_50_t7hab5.jpg"
     },
     {
-      name: "Udara Bandara",
-      role: "Developing Manager",
-      img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400"
-    },
-    {
-      name: "Bency Abeykoon",
-      role: "Marketing Manager",
-      img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400"
+      name: "Sithara Samarakoon",
+      role: "Co-Founder",
+      img: "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689715/Edited_40_rbwv2t.jpg"
     }
   ];
 

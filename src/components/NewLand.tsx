@@ -6,9 +6,17 @@ import Services from "./Services"
 import Members from "./Members"
 import Contact from "./Contact"
 import Footer from "./Footer"
+import { useRef } from "react"
 
 export default function NewLand() {
-  
+  const contactRef = useRef<HTMLDivElement>(null);
+
+  const scrollToContact = () => {
+    contactRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <>
@@ -18,7 +26,7 @@ export default function NewLand() {
       <About />
       <Journey />
       <Members />
-      <Contact />
-      <Footer />
+      <Contact ref={contactRef} />
+      <Footer scrollToContact={scrollToContact} />
     </> 
 )}
