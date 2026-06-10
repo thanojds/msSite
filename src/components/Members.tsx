@@ -74,7 +74,7 @@ export default function Members() {
               <div className="relative h-72 overflow-hidden">
 
                 <img
-                  src={member.img}
+                  // src={member.img}
                   alt={member.name}
                   className="
                     w-full h-full object-cover
