@@ -143,7 +143,7 @@ export default function About() {
                   </h3>
 
                   <p className="text-slate-200 font-black text-base sm:text-lg md:text-xl leading-relaxed border-l-4 border-cyan-400 pl-5 italic bg-[#0A0F1D]/60 p-5 rounded-r-2xl shadow-[0_0_20px_#06B6D4]">
-                    To empower businesses through innovative custom software solutions that enhance efficiency, productivity, and overall success in a digital world.
+                   To deeply understand customer needs and directly contribute to their business success by delivering secure, scalable, and modern software solutions efficiently.
                   </p>
                 </motion.div>
               )}
@@ -163,7 +163,7 @@ export default function About() {
                   </h3>
 
                   <p className="text-slate-200 font-black text-base sm:text-lg md:text-xl leading-relaxed border-l-4 border-cyan-400 pl-5 italic bg-[#0A0F1D]/60 p-5 rounded-r-2xl shadow-[0_0_20px_#06B6D4]">
-                    We believe in integrity, collaboration, and innovation, ensuring that every solution we deliver aligns with our clients’ goals while providing meaningful impacts and sustainable growth.
+                    o be the premier technology partner in Sri Lanka, empowering local and global businesses through innovative and reliable software solutions.
                   </p>
                 </motion.div>
               )}

@@ -11,7 +11,7 @@ export default function Navigation() {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
-    { name: "Events & News", path: "/events" },
+    // { name: "Events & News", path: "/events" },
     { name: "Contact", path: "/contact" }
   ];
 

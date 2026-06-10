@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 export default function Journey() {
   const images = [
-    "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689125/Edited_13_dldjjk.jpg", 
-    "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689030/Edited_23_yrhfe3.jpg", 
-    "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689621/Edited_57_prdxs7.jpg"
+    "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689125/Edited_13_dldjjk.1jpg", 
+    "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689030/Edited_23_yrhfe3.1jpg", 
+    "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689621/Edited_57_prdxs7.1png"
   ];
 
   const [index, setIndex] = useState(0);

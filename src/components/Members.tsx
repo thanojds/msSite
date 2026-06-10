@@ -5,12 +5,12 @@ export default function Members() {
     {
       name: "Thanoj Pathmakulasooriya",
       role: "Co-Founder",
-      img: "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779690271/Edited_50_t7hab5.jpg"
+      // img: "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779690271/Edited_50_t7hab5.jpg"
     },
     {
       name: "Sithara Samarakoon",
       role: "Co-Founder",
-      img: "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689715/Edited_40_rbwv2t.jpg"
+      // img: "https://res.cloudinary.com/dvnoyis73/image/upload/q_auto/f_auto/v1779689715/Edited_40_rbwv2t.jpg"
     }
   ];
 

@@ -37,7 +37,7 @@ const showAlert = (msg: string) => {
           return;
         }
 
-        const mailtoLink = `mailto:micronsoftsolutions@gmail.com?subject=Contact Form&body=
+        const mailtoLink = `mailto:info@micronsoftware.lk?subject=Contact Form&body=
           Name: ${name}%0A
           Email: ${email}%0A
           Message: ${message}
@@ -135,7 +135,7 @@ const showAlert = (msg: string) => {
 
                 <div>
                   <p className="text-white font-semibold">✉ Email</p>
-                  <p>micronsoftsolutions@gmail.com</p>
+                  <p>info@micronsoftware.lk</p>
                 </div>
 
                 <div>

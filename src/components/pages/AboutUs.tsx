@@ -136,8 +136,7 @@ export default function AboutUs() {
               </div>
 
               <p className="text-slate-400 mt-3 text-sm leading-relaxed">
-                Deliver world-class software solutions that empower businesses
-                through innovation and technology.
+                To deeply understand customer needs and directly contribute to their business success by delivering secure, scalable, and modern software solutions efficiently.
               </p>
             </motion.div>
 
@@ -165,8 +164,7 @@ export default function AboutUs() {
               </div>
 
               <p className="text-slate-400 mt-3 text-sm leading-relaxed">
-                To become a leading digital innovation hub creating futuristic
-                experiences globally.
+                To be the premier technology partner in Sri Lanka, empowering local and global businesses through innovative and reliable software solutions.
               </p>
             </motion.div>
 

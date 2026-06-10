@@ -88,7 +88,7 @@ export default function Footer({ scrollToContact }: FooterProps) {
                   ✉️
                 </div>
                 <div>
-                  <p className="text-white font-semibold">micronsoftsolutions@gmail.com</p>
+                  <p className="text-white font-semibold">info@micronsoftware.lk</p>
                   <p className="text-slate-500 text-sm">Send us an email</p>
                 </div>
               </div>
